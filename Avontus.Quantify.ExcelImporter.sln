@@ -1,0 +1,91 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample Files", "Sample Files", "{3446F2F4-E6C5-45E8-A812-3EE3183F4647}"
+	ProjectSection(SolutionItems) = preProject
+		SampleFiles\Cuplok MATERIAL LIST.xlsx = SampleFiles\Cuplok MATERIAL LIST.xlsx
+		SampleFiles\Haki MATERIAL LIST.xlsx = SampleFiles\Haki MATERIAL LIST.xlsx
+		SampleFiles\Import Data Test.xlsx = SampleFiles\Import Data Test.xlsx
+		SampleFiles\Kwikstage MATERIAL LIST.xlsx = SampleFiles\Kwikstage MATERIAL LIST.xlsx
+		SampleFiles\Layher MATERIAL LIST.xlsx = SampleFiles\Layher MATERIAL LIST.xlsx
+		SampleFiles\SMART Scaffolder T&F MATERIAL LIST.xls = SampleFiles\SMART Scaffolder T&F MATERIAL LIST.xls
+		SampleFiles\T&F MATERIAL LIST.xlsx = SampleFiles\T&F MATERIAL LIST.xlsx
+		SampleFiles\T&F Part MATERIAL LIST.xls = SampleFiles\T&F Part MATERIAL LIST.xls
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "installer", "installer", "{E43BF405-256D-40F3-AA8D-695D8FFFAA1D}"
+	ProjectSection(SolutionItems) = preProject
+		installer\AvontusQuantifyExcelImporter.aip = installer\AvontusQuantifyExcelImporter.aip
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "prerequisites", "prerequisites", "{059AAC7D-AADC-43D3-8839-EB446CC1A9B4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "resources", "resources", "{BFC521EE-092C-4EDD-8BE5-472BD6B74503}"
+	ProjectSection(SolutionItems) = preProject
+		installer\Resources\application.ico = installer\Resources\application.ico
+		installer\Resources\banner.bmp = installer\Resources\banner.bmp
+		installer\Resources\EULA.rtf = installer\Resources\EULA.rtf
+		installer\Resources\image.bmp = installer\Resources\image.bmp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "binaries", "binaries", "{8A17066D-6AA6-4727-AFDD-1C9AAD73B9ED}"
+	ProjectSection(SolutionItems) = preProject
+		binaries\Avontus.Core.dll = binaries\Avontus.Core.dll
+		binaries\Avontus.Rental.Library.dll = binaries\Avontus.Rental.Library.dll
+		binaries\Avontus.Rental.Utility.dll = binaries\Avontus.Rental.Utility.dll
+		binaries\SmartAssembly.ReportUsage.dll = binaries\SmartAssembly.ReportUsage.dll
+		binaries\SmartExceptionsWithAdvancedUI.dll = binaries\SmartExceptionsWithAdvancedUI.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Folder", "Solution Folder", "{FEC7D7CA-F3DA-4BF1-9629-0B1140D09E6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avontus.Quantify.ExcelImporter.Utils", "Avontus.Quantify.ExcelImporter.Utils\Avontus.Quantify.ExcelImporter.Utils.csproj", "{BC04F5E7-B070-44D6-AFAD-98E3029A924F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avontus.Quantify.ExcelImporter", "Avontus.Quantify.ExcelImporter\Avontus.Quantify.ExcelImporter.csproj", "{7343A85A-43BD-47CA-8F62-6C4BF77A4463}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VSTO 4.0 Runtime", "VSTO 4.0 Runtime", "{B3FDD9FB-AB5D-4E72-9E5C-15FBEB226721}"
+	ProjectSection(SolutionItems) = preProject
+		installer\Prerequisites\VSTO 4.0 Runtime\vstor_redist~r60724.exe = installer\Prerequisites\VSTO 4.0 Runtime\vstor_redist~r60724.exe
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC04F5E7-B070-44D6-AFAD-98E3029A924F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC04F5E7-B070-44D6-AFAD-98E3029A924F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC04F5E7-B070-44D6-AFAD-98E3029A924F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC04F5E7-B070-44D6-AFAD-98E3029A924F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7343A85A-43BD-47CA-8F62-6C4BF77A4463}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7343A85A-43BD-47CA-8F62-6C4BF77A4463}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7343A85A-43BD-47CA-8F62-6C4BF77A4463}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7343A85A-43BD-47CA-8F62-6C4BF77A4463}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{059AAC7D-AADC-43D3-8839-EB446CC1A9B4} = {E43BF405-256D-40F3-AA8D-695D8FFFAA1D}
+		{BFC521EE-092C-4EDD-8BE5-472BD6B74503} = {E43BF405-256D-40F3-AA8D-695D8FFFAA1D}
+		{B3FDD9FB-AB5D-4E72-9E5C-15FBEB226721} = {059AAC7D-AADC-43D3-8839-EB446CC1A9B4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5E856714-7002-495D-AC6C-BA0D6F24BFAB}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://code:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Avontus.Quantify.ExcelImporter.Utils\\Avontus.Quantify.ExcelImporter.Utils.csproj
+		SccProjectName1 = Avontus.Quantify.ExcelImporter.Utils
+		SccLocalPath1 = Avontus.Quantify.ExcelImporter.Utils
+		SccProjectUniqueName2 = Avontus.Quantify.ExcelImporter\\Avontus.Quantify.ExcelImporter.csproj
+		SccProjectName2 = Avontus.Quantify.ExcelImporter
+		SccLocalPath2 = Avontus.Quantify.ExcelImporter
+	EndGlobalSection
+EndGlobal

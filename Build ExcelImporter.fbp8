@@ -1,0 +1,1376 @@
+﻿project
+begin
+  projectauthor = "Brian Webb"
+  projectid = {1EA8BA3B-43BB-43DD-A029-85326503C2EC}
+  target
+  begin
+    name = Default
+    targetid = {C61CB5C4-4A19-4DD7-B4FB-910EA5D8CE82}
+    rootaction
+    begin
+      action.try
+      begin
+        id = {AEA3376C-94B2-4172-B2AF-D633B717600A}
+        action.target.execute
+        begin
+          actionlistid = {BFEA6980-87E2-4E07-9F1B-3A5567C12C0F}
+          failifactionlistempty = false
+          id = {F76D892F-3E31-43A3-8627-1336637599A3}
+          resetdependencychain = false
+        end
+      end
+      action.catch
+      begin
+        id = {15B1270F-4C1B-4462-8F66-4E4CB49057AA}
+        action.target.execute
+        begin
+          actionlistid = {521E8B8E-E68D-48C3-89D5-7DAB90C1575E}
+          failifactionlistempty = false
+          id = {DDC2B3A8-F340-4127-9920-1ED7ECDB7592}
+          resetdependencychain = false
+        end
+        action.build.stop
+        begin
+          buildresult = false
+          id = {D583881B-7E3D-46D5-89DD-94958A52E357}
+        end
+      end
+      action.end
+      begin
+        id = {03F71891-AE04-4BC3-827F-046E6907D0B9}
+      end
+    end
+  end
+  target
+  begin
+    name = Main
+    targetid = {BFEA6980-87E2-4E07-9F1B-3A5567C12C0F}
+    rootaction
+    begin
+      action.tfs.source.workingfolder.map
+      begin
+        actiontypeid = {A7A339C0-8CEC-4CBB-A187-B2B6B0D3E347}
+        customactionname = "Team Foundation Map Working Folder"
+        description = "Map TFS Working Folder"
+        enabletimeout = false
+        id = {D3396142-7EDE-43BC-B3A4-C10844BBAE2C}
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        terminateontimeout = true
+        timeoutlength = 2
+        as.servername = <REDACTED_TFS_URL>
+        as.localpath = %FBPROJECTDIR%
+        as.remotepath = $/Avontus.Quantify.ExcelImporter/
+        as.useworkspace = False
+        as.workspace = TEAM
+        as.usecredentials = False
+        as.username = <REDACTED>
+        as.token = <REDACTED>
+        as.verifybeforemap = True
+      end
+      action.tfs.source.pending.undo
+      begin
+        actiontypeid = {59DCFCAB-AFA1-4F26-991B-C6A40C9A12B7}
+        customactionname = "Team Foundation Undo Pending Changes"
+        description = "Undo Pending Changes"
+        enabletimeout = false
+        id = {9F7616D7-AB86-4937-92B4-0A2DC66F7216}
+        ignorefailure = true
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        terminateontimeout = true
+        timeoutlength = 2
+        as.recursepathnames = 0
+        as.usepathnames = 0
+        as.customworkspacepath = %FBPROJECTDIR%
+        as.usecustomworkspacepath = 1
+        as.usecredentials = False
+      end
+      action.propertyset.define
+      begin
+        description = "Get current version from SharedAssemblyInfo"
+        id = {E9D677D9-8F23-40B0-BA28-10AC740A49F9}
+        propertysetname = AssemblyVersion
+        propertyset.dotnet.numbers
+        begin
+          buildversion = 65
+          filebuildversion = 65
+          filemajorversion = 2
+          majorversion = 2
+          name = AssemblyVersion
+        end
+      end
+      action.files.delete
+      begin
+        deletehidden = true
+        deletereadonly = false
+        description = "Delete Release Files"
+        failifnofile = false
+        filespec = %FBPROJECTDIR%\\installer\\releases\\*.*
+        id = {0B9944CF-CBEE-4242-955A-B44F3F8A175D}
+        ignorefailure = true
+      end
+      action.files.delete
+      begin
+        deletehidden = true
+        deletereadonly = true
+        description = "Delete Build Log File"
+        failifnofile = false
+        filespec = %FBPROJECTDIR%\\Build*.html
+        id = {5658DEFD-56BC-435B-AC25-618E374501BA}
+        ignorefailure = true
+      end
+      action.tfs.source.get
+      begin
+        actiontypeid = {9B1A314E-5A31-49F2-BBF7-017D1375B3FA}
+        customactionname = "Team Foundation Get"
+        description = "Get Latest on Solution [ %FBPROJECTDIR% ]"
+        enabletimeout = false
+        id = {87B40679-5A56-45D5-9154-28097E0B561C}
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        terminateontimeout = true
+        timeoutlength = 2
+        as.versionlatest = True
+        as.versionchangeset = False
+        as.versionlabel = False
+        as.versionworkspace = False
+        as.date = 12/30/1899
+        as.customworkspacepath = %FBPROJECTDIR%
+        as.usecustomworkspacepath = True
+        as.usepathnames = False
+        as.recursepathnames = False
+        as.all = False
+        as.overwrite = False
+        as.pretend = False
+        as.versiondate = False
+        as.usecredentials = False
+        as.time = 12/30/1899
+        as.versiondatetime = False
+      end
+      action.tfs.source.checkout
+      begin
+        actiontypeid = {61235C26-EBF4-4B37-96FC-6C4145FBAF88}
+        customactionname = "Team Foundation Check Out"
+        description = "Check Out SharedAssemblyInfo and Installer File"
+        enabletimeout = false
+        id = {203102FA-4D91-47BF-B1B1-BCE3882F3BD6}
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        terminateontimeout = true
+        timeoutlength = 2
+        as.pathnames = "SharedAssemblyInfo.cs" +
+                       "Installer\\AvontusQuantifyExcelImporter.aip"
+        as.recursepathnames = False
+        as.lockcheckout = False
+        as.lockcheckin = False
+        as.customworkspacepath = %FBPROJECTDIR%
+        as.usecustomworkspacepath = True
+        as.usecredentials = False
+      end
+      action.propertyset.loadfrom.assemblyinfo
+      begin
+        assemblyinfopath = %FBPROJECTDIR%\\SharedAssemblyInfo.cs
+        description = "Load Version Property"
+        failincompleteversion = true
+        failnoproperties = true
+        id = {D9BFAA84-9435-4B19-BD30-7A43806B9EFA}
+        propertysetname = AssemblyVersion
+      end
+      action.directory.delete
+      begin
+        deletehidden = true
+        deletereadonly = true
+        deletetree = true
+        description = "Delete smatassembly output Folder"
+        enabledelay = false
+        failifnodirectory = false
+        fileordirectory = %FBPROJECTDIR%\\installer\\smartassemblyoutput\\
+        force = false
+        id = {463B93B3-B333-41C1-89D7-2AD22299931A}
+        ignorefailure = true
+        logdeletedfiles = false
+      end
+      action.visualstudio
+      begin
+        allowunsafe = false
+        allprojects = "Avontus.Quantify.ExcelImporter.Utils" +
+                      "Avontus.Quantify.ExcelImporter" +
+                      ""
+        allwarningsaserrors = false
+        applyassemblyinfoto = btAllProjects
+        applyresourceinfoto = btAllProjects
+        assemblyfileversion = |||
+        assemblyinfo = "Assembly Info"
+        assemblyversion = |||
+        autoincassemblybuildnumber = false
+        autoincassemblyfilebuildnumber = false
+        autoincassemblyfilerevisionno = false
+        autoincassemblyrevisionno = false
+        autoincbuild = true
+        autoselectdotnetversion = false
+        autoupdatefileversion = true
+        autoupdateproductversion = true
+        buildaction = baClean
+        buildtype = btIncludeDisabledProjects
+        buildversion = 0
+        codepage = 1252
+        debugconstant = false
+        description = "Clean Solution"
+        disablenodereuse = true
+        disablepostbuildevent = false
+        disableprebuildevent = false
+        disableselectedwarnings = false
+        enabletimeout = false
+        expandimpersonationtoken = false
+        failifnoconfigurationsmatch = false
+        id = {1C633761-C5AA-4C05-9DFB-2688D5B3E412}
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        includecompiledate = false
+        isdebug = false
+        isdll = false
+        isprerelease = false
+        isprivate = false
+        isspecial = false
+        linkassemblyfileversioninfo = false
+        linkfileandproductversion = true
+        locale = 1033
+        loglevel = llNormal
+        majorversion = 0
+        maxcpus = 0
+        minorversion = 0
+        optimize = false
+        overridecompiler = false
+        overridereferencepaths = false
+        overridetargetframework = false
+        overridewarnings = false
+        projlocationdetectmethod = useWMI
+        releaseversion = 0
+        safemode = false
+        selectedwarningsaserrors = false
+        sharepath = wwwroot$
+        solution = %FBPROJECTDIR%\\Avontus.Quantify.ExcelImporter.sln
+        solutionconfiguration = "Release|Any CPU"
+        structuredoutput = true
+        targetframework = fx20
+        terminateontimeout = false
+        timeoutlength = 2
+        traceconstant = false
+        updateassemblycomment = false
+        updateassemblycompany = false
+        updateassemblycopyright = false
+        updateassemblydescription = false
+        updateassemblyfileversion = false
+        updateassemblyinfo = false
+        updateassemblyproductname = false
+        updateassemblytitle = false
+        updateassemblytrademark = false
+        updateassemblyversion = false
+        updatewin32resource = false
+        usedotnetpropertyset = false
+        useenv = false
+        useerrordialogmonitor = false
+        usemsbuild = false
+        useregexonconfigname = true
+        usewin32propertyset = false
+        vstudioversion = vs2017
+        warninglevel = 4
+        win32versioninfo = "Win32 Version Info"
+        wmiwebsitenum = 1
+        action.directory.delete
+        begin
+          deletehidden = true
+          deletereadonly = true
+          deletetree = true
+          description = "Delete Addin\\bin\\ Folder"
+          enabledelay = false
+          failifnodirectory = false
+          fileordirectory = %FBPROJECTDIR%\\Avontus.Quantify.ExcelImporter\\Avontus.Quantify.ExcelImporter\\bin\\
+          force = false
+          id = {D32B88D3-BB61-42A1-8478-E1747F16FBF5}
+          ignorefailure = true
+          logdeletedfiles = false
+        end
+        action.directory.delete
+        begin
+          deletehidden = true
+          deletereadonly = true
+          deletetree = true
+          description = "Delete Addin\\bin\\ Folder"
+          enabledelay = false
+          failifnodirectory = false
+          fileordirectory = %FBPROJECTDIR%\\Avontus.Quantify.ExcelImporter\\Avontus.Quantify.ExcelImporter.Util\\bin\\
+          force = false
+          id = {D9DCBEFF-FB0A-46EB-8239-B70EEDFE9757}
+          ignorefailure = true
+          logdeletedfiles = false
+        end
+        action.directory.delete
+        begin
+          deletehidden = true
+          deletereadonly = true
+          deletetree = true
+          description = "Delete Addin\\obj\\ Folder"
+          enabledelay = false
+          failifnodirectory = false
+          fileordirectory = %FBPROJECTDIR%\\Avontus.Quantify.ExcelImporter\\Avontus.Quantify.ExcelImporter\\obj\\
+          force = false
+          id = {1A424FA9-D341-416D-BFB5-EF2A17CA539C}
+          ignorefailure = true
+          logdeletedfiles = false
+        end
+        action.directory.delete
+        begin
+          deletehidden = true
+          deletereadonly = true
+          deletetree = true
+          description = "Delete Addin\\obj\\ Folder"
+          enabledelay = false
+          failifnodirectory = false
+          fileordirectory = %FBPROJECTDIR%\\Avontus.Quantify.ExcelImporter\\Avontus.Quantify.ExcelImporter.Util\\obj\\
+          force = false
+          id = {B6EDABB6-EBB3-4627-9E53-EFCEA1B75B6C}
+          ignorefailure = true
+          logdeletedfiles = false
+        end
+      end
+      action.visualstudio
+      begin
+        allowunsafe = false
+        allprojects = "Avontus.Quantify.ExcelImporter.Utils" +
+                      "Avontus.Quantify.ExcelImporter" +
+                      ""
+        allwarningsaserrors = false
+        applyassemblyinfoto = btAllProjects
+        applyresourceinfoto = btAllProjects
+        assemblyfileversion = |||
+        assemblyinfo = "Assembly Info"
+        assemblyversion = |||
+        autoincassemblybuildnumber = false
+        autoincassemblyfilebuildnumber = false
+        autoincassemblyfilerevisionno = false
+        autoincassemblyrevisionno = false
+        autoincbuild = true
+        autoselectdotnetversion = false
+        autoupdatefileversion = true
+        autoupdateproductversion = true
+        buildaction = baRebuild
+        buildtype = btIncludeDisabledProjects
+        buildversion = 0
+        codepage = 1252
+        debugconstant = false
+        description = "Rebuild Solution"
+        disablenodereuse = true
+        disablepostbuildevent = false
+        disableprebuildevent = false
+        disableselectedwarnings = false
+        enabletimeout = false
+        expandimpersonationtoken = false
+        failifnoconfigurationsmatch = false
+        id = {26D16230-B9F5-4796-9FB1-8B53DDE43FF7}
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        includecompiledate = false
+        isdebug = false
+        isdll = false
+        isprerelease = false
+        isprivate = false
+        isspecial = false
+        linkassemblyfileversioninfo = false
+        linkfileandproductversion = true
+        locale = 1033
+        loglevel = llNormal
+        majorversion = 0
+        maxcpus = 0
+        minorversion = 0
+        optimize = false
+        overridecompiler = false
+        overridereferencepaths = false
+        overridetargetframework = false
+        overridewarnings = false
+        projlocationdetectmethod = useWMI
+        releaseversion = 0
+        safemode = false
+        selectedwarningsaserrors = false
+        sharepath = wwwroot$
+        solution = %FBPROJECTDIR%\\Avontus.Quantify.ExcelImporter.sln
+        solutionconfiguration = "Release|Any CPU"
+        structuredoutput = true
+        targetframework = fx20
+        terminateontimeout = false
+        timeoutlength = 2
+        traceconstant = false
+        updateassemblycomment = false
+        updateassemblycompany = false
+        updateassemblycopyright = false
+        updateassemblydescription = false
+        updateassemblyfileversion = false
+        updateassemblyinfo = false
+        updateassemblyproductname = false
+        updateassemblytitle = false
+        updateassemblytrademark = false
+        updateassemblyversion = false
+        updatewin32resource = false
+        usedotnetpropertyset = false
+        useenv = false
+        useerrordialogmonitor = false
+        usemsbuild = false
+        useregexonconfigname = true
+        usewin32propertyset = false
+        vstudioversion = vs2017
+        warninglevel = 4
+        win32versioninfo = "Win32 Version Info"
+        wmiwebsitenum = 1
+      end
+      action.smartassembly.protect
+      begin
+        actiontypeid = {CA4476B2-D249-4CEF-B65E-017B19859F46}
+        customactionname = "SmartAssembly Improve \+ Protect Assembly"
+        description = "SmartAssembly QuantifyExcelImporterUtil"
+        enabletimeout = false
+        id = {D98E884B-1D4A-44ED-AA7F-E33048A1665A}
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        terminateontimeout = true
+        timeoutlength = 2
+        as.projectfilename = %FBPROJECTDIR%\\Installer\\QuantifyExcelImporterUtil.saproj
+      end
+      action.process.execute
+      begin
+        captureoutput = true
+        description = SignQuantify.ExcelImporter.Util.dll
+        enablelivecapture = true
+        enablereturncodecheck = true
+        enabletimeout = false
+        expandimpersonationtoken = false
+        hidewindow = true
+        id = {78989686-948A-458B-BA59-F62E85E08083}
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        logoutput = true
+        logprocessparameters = true
+        params = "sign /fd SHA256 /a /f <PATH_TO_SIGNING_CERTIFICATE.pfx> /p <REDACTED_PFX_PASSWORD> /d \"Quantify Excel Importer\" /du http://www.avontus.com /tr http://timestamp.digicert.com/ /td SHA256 %FBPROJECTDIR%\\installer\\smartassemblyoutput\\Avontus.Quantify.ExcelImporter.Utils.dll"
+        programname = "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\x86\\signtool.exe"
+        redirectstderr = true
+        returncodecomparator = rcEqualTo
+        returncodetocheck = 0
+        startindir = %FBPROJECTDIR%\\Installer\\
+        terminateontimeout = false
+        timeoutlength = 1
+        useerrordialogmonitor = false
+        waitforcompletion = true
+      end
+      action.advancedinstaller.edit
+      begin
+        actiontypeid = {692E2FC0-0D8F-4DBB-8550-CEF6EE324E35}
+        customactionname = "Advanced Installer Edit"
+        description = "Update Installer Version"
+        enabletimeout = false
+        id = {6E7547BD-650B-4E3C-9109-8CA0181399C7}
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        terminateontimeout = true
+        timeoutlength = 2
+        as.projectfile = %FBPROJECTDIR%\\Installer\\AvontusQuantifyExcelImporter.aip
+        as.command1 = /SetVersion
+        as.command1args = %AssemblyVersion.MajorVersion%.%AssemblyVersion.MinorVersion%.%AssemblyVersion.BuildVersion%
+      end
+      action.advancedinstaller.build
+      begin
+        actiontypeid = {3C16AC56-BCAC-4BA8-AD2B-00316FBAE62B}
+        customactionname = "Advanced Installer Build"
+        description = "Build Installer"
+        enabletimeout = false
+        id = {FB497628-E1F0-4F11-9155-5496DCB2B367}
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        terminateontimeout = true
+        timeoutlength = 2
+        as.projectfile = %FBPROJECTDIR%\\Installer\\AvontusQuantifyExcelImporter.aip
+        as.rebuild = True
+      end
+      action.visualstudio
+      begin
+        allowunsafe = false
+        allprojects = "Avontus.Quantify.ExcelImporter.Utils" +
+                      "Avontus.Quantify.ExcelImporter" +
+                      ""
+        allwarningsaserrors = false
+        applyassemblyinfoto = btAllProjects
+        applyresourceinfoto = btAllProjects
+        assemblyfileversion = |||
+        assemblyinfo = "Assembly Info"
+        assemblyversion = |||
+        autoincassemblybuildnumber = false
+        autoincassemblyfilebuildnumber = false
+        autoincassemblyfilerevisionno = false
+        autoincassemblyrevisionno = false
+        autoincbuild = true
+        autoselectdotnetversion = false
+        autoupdatefileversion = true
+        autoupdateproductversion = true
+        buildaction = baClean
+        buildtype = btIncludeDisabledProjects
+        buildversion = 0
+        codepage = 1252
+        debugconstant = false
+        description = "Clean Solution (not necessary - good for debugging installer)"
+        disablenodereuse = true
+        disablepostbuildevent = false
+        disableprebuildevent = false
+        disableselectedwarnings = false
+        enabletimeout = false
+        expandimpersonationtoken = false
+        failifnoconfigurationsmatch = false
+        id = {719E6B53-AF87-402E-9A52-C0C819B27433}
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        includecompiledate = false
+        isdebug = false
+        isdll = false
+        isprerelease = false
+        isprivate = false
+        isspecial = false
+        linkassemblyfileversioninfo = false
+        linkfileandproductversion = true
+        locale = 1033
+        loglevel = llNormal
+        majorversion = 0
+        maxcpus = 0
+        minorversion = 0
+        optimize = false
+        overridecompiler = false
+        overridereferencepaths = false
+        overridetargetframework = false
+        overridewarnings = false
+        projlocationdetectmethod = useWMI
+        releaseversion = 0
+        safemode = false
+        selectedwarningsaserrors = false
+        sharepath = wwwroot$
+        solution = %FBPROJECTDIR%\\Avontus.Quantify.ExcelImporter.sln
+        solutionconfiguration = "Release|Any CPU"
+        structuredoutput = true
+        targetframework = fx20
+        terminateontimeout = false
+        timeoutlength = 2
+        traceconstant = false
+        updateassemblycomment = false
+        updateassemblycompany = false
+        updateassemblycopyright = false
+        updateassemblydescription = false
+        updateassemblyfileversion = false
+        updateassemblyinfo = false
+        updateassemblyproductname = false
+        updateassemblytitle = false
+        updateassemblytrademark = false
+        updateassemblyversion = false
+        updatewin32resource = false
+        usedotnetpropertyset = false
+        useenv = false
+        useerrordialogmonitor = false
+        usemsbuild = false
+        useregexonconfigname = true
+        usewin32propertyset = false
+        vstudioversion = vs2017
+        warninglevel = 4
+        win32versioninfo = "Win32 Version Info"
+        wmiwebsitenum = 1
+      end
+      action.file.getsize
+      begin
+        description = "Get Exe File Size"
+        filename = %FBPROJECTDIR%\\installer\\releases\\QuantifyExcelImporter.exe
+        formattedsizevariable = X86FRIENDLYFILESIZE
+        id = {1D3F03BF-A16B-480F-A53C-6AC0A9B9CDFC}
+        usefileset = false
+        valueinbytesvariable = X86FILESIZE
+        action.datetime.get
+        begin
+          dateformat = dd/M/yyyy
+          description = "Set current date to AIDATE"
+          fbvariable = AIDATE
+          forceseparators = false
+          id = {94C6CF85-0BD3-4119-86D8-69703B6CDC6C}
+          manipulationtype = Add
+          manipulationunit = Seconds
+          thedate = 42150.0855563194
+          usenow = true
+        end
+        action.textfile.read
+        begin
+          allowsharedreading = false
+          description = "Read currentbuildnotes.txt"
+          escapevariables = false
+          fbvariable = BUILDNOTES
+          filename = %FBPROJECTDIR%\\installer\\currentbuildnotes.txt
+          id = {89F8DCC6-0361-42B3-A760-D110152836F3}
+          putcontentsinvar = true
+        end
+        action.textfile.create
+        begin
+          createdirectory = false
+          description = "Create excelimporter.txt"
+          encoding = ANSI
+          filecontents = ";aiu;" +
+                         "" +
+                         "[ExcelImporter%AssemblyVersion.MajorVersion%.%AssemblyVersion.MinorVersion%.%AssemblyVersion.BuildVersion%]" +
+                         "Name\=Quantify Excel Importer" +
+                         "URL\=https://download.avontus.com/excelimporter/QuantifyExcelImporter.exe" +
+                         "Size\=%X86FILESIZE%" +
+                         "Description\=Avontus Quantify Excel Importer" +
+                         "FilePath\=[APPDIR]Avontus.Quantify.ExcelImporter.dll" +
+                         "Version\=%AssemblyVersion.MajorVersion%.%AssemblyVersion.MinorVersion%.%AssemblyVersion.BuildVersion%.%AssemblyVersion.RevisionVersion%" +
+                         "ReleaseDate\=%AIDATE%" +
+                         "%BUILDNOTES%" +
+                         "Replaces\=All"
+          id = {830F9BE7-BEFA-4D9E-9A46-496D93FF8CD5}
+          newfilename = %FBPROJECTDIR%\\installer\\releases\\excelimporter.txt
+          overwriteexisting = true
+          writebom = true
+        end
+        action.files.concat
+        begin
+          description = "Append current release notes to excelimporter.txt"
+          destexistsaction = AppendIfExists
+          destinationfile = %FBPROJECTDIR%\\installer\\releases\\excelimporter.txt
+          id = {78E4CB35-493D-483C-B374-7995E447BD71}
+          sourcefile1 = %FBPROJECTDIR%\\installer\\excelimporter.txt
+        end
+        action.text.findreplace
+        begin
+          casesensitive = true
+          description = "Replace duplicate ;aiu; in file"
+          expandvarswhenreplacing = true
+          failmatchcount = 1
+          failonmorematchcount = 1
+          filesetcountallmatches = false
+          id = {B648B7DE-D5B4-41CA-9191-2AF9097E5DD8}
+          matchregexpr = false
+          matchtype = mtAll
+          matchwildcards = false
+          replacementmode = trOriginalFile
+          replacementtext = Replaces\=All
+          searchstring = Replaces\=All;aiu;
+          sourcepath = %FBPROJECTDIR%\\installer\\releases\\excelimporter.txt
+          substitute = false
+          textfindbehaviour = tfDontFail
+          usefileset = false
+          usevariable = false
+          wholelinesonly = false
+          wholewords = false
+          writebom = true
+        end
+      end
+      action.directory.create
+      begin
+        description = "Create Directory on Support Server"
+        fileordirectory = \\\\support\\wwwroot\\excelimporter\\%AssemblyVersion.MajorVersion%.%AssemblyVersion.MinorVersion%.%AssemblyVersion.BuildVersion%
+        force = false
+        id = {3CC9CBD0-CE47-425D-AAA6-2EA8FEFBABA8}
+      end
+      action.files.list.copymove
+      begin
+        clearattributes = true
+        deletesource = true
+        description = "Move files to support server"
+        destfolder = \\\\support\\wwwroot\\excelimporter\\%AssemblyVersion.MajorVersion%.%AssemblyVersion.MinorVersion%.%AssemblyVersion.BuildVersion%
+        failexists = false
+        failiffilenotfound = true
+        failifzerofiles = false
+        filelist = QuantifyExcelImporter.exe,excelimporter.txt
+        forcedestdirs = true
+        id = {442DA327-97F0-488C-BB7C-697E246E2B2E}
+        overwritereadonly = true
+        preservesubdirectorystructure = false
+        sourcefolder = %FBPROJECTDIR%\\installer\\releases\\
+      end
+      action.log.export
+      begin
+        actionlistid = {BFEA6980-87E2-4E07-9F1B-3A5567C12C0F}
+        description = "Export log as HTML"
+        erroractionsonly = false
+        exportformat = efHTML
+        exportfragment = expFull
+        exportfromparenttarget = false
+        exportfromroot = false
+        id = {1FDDA5E3-E8DE-4A38-B77B-856D51E95123}
+        includeactionendtime = true
+        includeactionruntime = true
+        includeactionstarttime = true
+        includeactiontype = true
+        includeheading = true
+        includeoutput = true
+        includesummary = true
+        noheaderforfragment = false
+        outputfile = %FBPROJECTDIR%\\BuildLog.html
+        recursiveactions = true
+        action.text.findreplace
+        begin
+          casesensitive = true
+          description = "Text Replace Feature\="
+          destinationvariable = HTMLBUILDNOTES
+          expandvarswhenreplacing = true
+          failmatchcount = 1
+          failonmorematchcount = 1
+          fbvariable = BUILDNOTES
+          filesetcountallmatches = false
+          id = {16F662C7-D7E3-4EE9-9FA2-B416AD349DD8}
+          matchregexpr = false
+          matchtype = mtAll
+          matchwildcards = false
+          replacementmode = trDestinationVariable
+          replacementtext = "<h3\>Feature Release Notes</h3\><ul\><li\>"
+          searchstring = Feature\=
+          substitute = false
+          textfindbehaviour = tfDontFail
+          usefileset = false
+          usevariable = true
+          wholelinesonly = false
+          wholewords = false
+          writebom = true
+        end
+        action.text.findreplace
+        begin
+          casesensitive = true
+          description = "Text Replace Feature*\="
+          destinationvariable = HTMLBUILDNOTES
+          expandvarswhenreplacing = true
+          failmatchcount = 1
+          failonmorematchcount = 1
+          fbvariable = HTMLBUILDNOTES
+          filesetcountallmatches = false
+          id = {1FB2ABE2-CB08-42B6-9EAB-E3B075268980}
+          matchregexpr = false
+          matchtype = mtAll
+          matchwildcards = true
+          replacementmode = trDestinationVariable
+          replacementtext = </li\><li\>
+          searchstring = Feature*\=
+          substitute = false
+          textfindbehaviour = tfDontFail
+          usefileset = false
+          usevariable = true
+          wholelinesonly = false
+          wholewords = false
+          writebom = true
+        end
+        action.text.findreplace
+        begin
+          casesensitive = true
+          description = "Replace Enhancement\="
+          destinationvariable = HTMLBUILDNOTES
+          expandvarswhenreplacing = true
+          failmatchcount = 1
+          failonmorematchcount = 1
+          fbvariable = HTMLBUILDNOTES
+          filesetcountallmatches = false
+          id = {9D2D8A4C-355C-4E7D-91A7-9091583CF5E5}
+          matchregexpr = false
+          matchtype = mtAll
+          matchwildcards = false
+          replacementmode = trDestinationVariable
+          replacementtext = "</li\></ul\><h3\>Enhancement Release Notes</h3\><ul\><li\>"
+          searchstring = Enhancement\=
+          substitute = false
+          textfindbehaviour = tfDontFail
+          usefileset = false
+          usevariable = true
+          wholelinesonly = false
+          wholewords = false
+          writebom = true
+        end
+        action.text.findreplace
+        begin
+          casesensitive = true
+          description = "Text Replace Enhancement*\="
+          destinationvariable = HTMLBUILDNOTES
+          expandvarswhenreplacing = true
+          failmatchcount = 1
+          failonmorematchcount = 1
+          fbvariable = HTMLBUILDNOTES
+          filesetcountallmatches = false
+          id = {7FE8EC78-FEBA-4F63-9748-BC4979C4312F}
+          matchregexpr = false
+          matchtype = mtAll
+          matchwildcards = true
+          replacementmode = trDestinationVariable
+          replacementtext = </li\><li\>
+          searchstring = Enhancement*\=
+          substitute = false
+          textfindbehaviour = tfDontFail
+          usefileset = false
+          usevariable = true
+          wholelinesonly = false
+          wholewords = false
+          writebom = true
+        end
+        action.text.findreplace
+        begin
+          casesensitive = true
+          description = "Replace BugFix\="
+          destinationvariable = HTMLBUILDNOTES
+          expandvarswhenreplacing = true
+          failmatchcount = 1
+          failonmorematchcount = 1
+          fbvariable = HTMLBUILDNOTES
+          filesetcountallmatches = false
+          id = {02DC9F68-E4CA-406C-AE61-52F4823B4DE3}
+          matchregexpr = false
+          matchtype = mtAll
+          matchwildcards = false
+          replacementmode = trDestinationVariable
+          replacementtext = "</li\></ul\><h3\>Bug Fix Release Notes</h3\><ul\><li\>"
+          searchstring = BugFix\=
+          substitute = false
+          textfindbehaviour = tfDontFail
+          usefileset = false
+          usevariable = true
+          wholelinesonly = false
+          wholewords = false
+          writebom = true
+        end
+        action.variable.append
+        begin
+          actiontypeid = {AF9E88AA-E8C2-424C-BE45-4AC0897B9477}
+          customactionname = "Append To Variable"
+          enabletimeout = false
+          id = {14C886EA-D18F-42FF-8FBF-918E57B6B773}
+          impersonateusenetcredonly = false
+          impersonateuser = false
+          terminateontimeout = true
+          timeoutlength = 1
+          as.thevariable = HTMLBUILDNOTES
+          as.newvalue = </li\></ul\>
+          as.separatewithcrlf = False
+          as.separatewithtab = False
+        end
+        action.string.replace
+        begin
+          actiontypeid = {78526C82-A8E7-42B3-8C9D-1E229C79D915}
+          customactionname = "String Replace"
+          enabletimeout = false
+          id = {9E7AE7A0-1C37-48C1-92C9-CF8F02A987CE}
+          impersonateusenetcredonly = false
+          impersonateuser = false
+          terminateontimeout = true
+          timeoutlength = 1
+          as.applytoinput = False
+          as.usinginputvariable = True
+          as.outputvariable = HTMLBUILDNOTES
+          as.inputvariable = HTMLBUILDNOTES
+          as.searchstring = <ul\></li\>
+          as.replacementstring = <ul\>
+          as.casesensitive = True
+          as.replaceall = True
+        end
+      end
+      action.process.execute
+      begin
+        captureoutput = true
+        description = "OnTime Bug Switcher"
+        enablelivecapture = true
+        enablereturncodecheck = true
+        enabletimeout = false
+        expandimpersonationtoken = false
+        hidewindow = true
+        id = {B30D8B7A-E456-42FC-8C8F-BAAA1763D8DC}
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        logoutput = true
+        logprocessparameters = true
+        params = "/releasetotesting /project\=\"Excel Importer\" /version\=%AssemblyVersion% /outputfolder\=\"%FBPROJECTDIR%\\installer\""
+        programname = "C:\\Program Files (x86)\\Avontus Internal\\AvontusOnTimeSwitcher\\OnTimeSwitcher.exe"
+        redirectstderr = true
+        returncodecomparator = rcEqualTo
+        returncodetocheck = 0
+        startindir = %FBPROJECTDIR%\\installer\\
+        terminateontimeout = false
+        timeoutlength = 1
+        useerrordialogmonitor = false
+        waitforcompletion = true
+      end
+      action.textfile.read
+      begin
+        allowsharedreading = false
+        description = "Read Notes from Bug Switcher"
+        escapevariables = false
+        fbvariable = HTMLBUGNOTES
+        filename = %FBPROJECTDIR%\\installer\\ontimeresult.html
+        id = {4E28E823-67D8-4B57-83FC-9B346661BF50}
+        putcontentsinvar = true
+      end
+      action.variable.append
+      begin
+        actiontypeid = {AF9E88AA-E8C2-424C-BE45-4AC0897B9477}
+        customactionname = "Append To Variable"
+        description = "Append Bug to Build Notes"
+        enabletimeout = false
+        id = {BD2785C6-4241-4E27-A13E-08BA1A64E444}
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        terminateontimeout = true
+        timeoutlength = 1
+        as.thevariable = HTMLBUILDNOTES
+        as.newvalue = %HTMLBUGNOTES%
+        as.separatewithcrlf = False
+        as.separatewithtab = False
+      end
+      action.string.replace
+      begin
+        actiontypeid = {78526C82-A8E7-42B3-8C9D-1E229C79D915}
+        customactionname = "String Replace"
+        description = "Get rid of <div\> tags"
+        enabletimeout = false
+        id = {2EDA2F8D-8E46-46C2-A026-89204857AFC5}
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        terminateontimeout = true
+        timeoutlength = 1
+        as.applytoinput = False
+        as.usinginputvariable = True
+        as.outputvariable = HTMLBUILDNOTES
+        as.inputvariable = HTMLBUILDNOTES
+        as.searchstring = <div\>
+        as.casesensitive = False
+        as.replaceall = True
+      end
+      action.string.replace
+      begin
+        actiontypeid = {78526C82-A8E7-42B3-8C9D-1E229C79D915}
+        customactionname = "String Replace"
+        description = "Get rid of </div\> tags"
+        enabletimeout = false
+        id = {7A9E6ABF-B31A-41FF-A85B-A0C508096362}
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        terminateontimeout = true
+        timeoutlength = 1
+        as.applytoinput = False
+        as.usinginputvariable = True
+        as.outputvariable = HTMLBUILDNOTES
+        as.inputvariable = HTMLBUILDNOTES
+        as.searchstring = </div\>
+        as.casesensitive = False
+        as.replaceall = True
+      end
+      action.string.replace
+      begin
+        actiontypeid = {78526C82-A8E7-42B3-8C9D-1E229C79D915}
+        customactionname = "String Replace"
+        description = "Replace &nbsp; with <br\>"
+        enabletimeout = false
+        id = {51692806-888E-474D-A7E1-57599B22E677}
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        terminateontimeout = true
+        timeoutlength = 1
+        as.applytoinput = False
+        as.usinginputvariable = True
+        as.outputvariable = HTMLBUILDNOTES
+        as.inputvariable = HTMLBUILDNOTES
+        as.searchstring = &nbsp;
+        as.replacementstring = <br\>
+        as.casesensitive = False
+        as.replaceall = True
+      end
+      action.string.replace
+      begin
+        actiontypeid = {78526C82-A8E7-42B3-8C9D-1E229C79D915}
+        customactionname = "String Replace"
+        description = "Replace <br\><br\> with <br\>"
+        enabletimeout = false
+        id = {A8E6F064-AC0B-4E16-8C12-69B2FD4EE72E}
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        terminateontimeout = true
+        timeoutlength = 1
+        as.applytoinput = False
+        as.usinginputvariable = True
+        as.outputvariable = HTMLBUILDNOTES
+        as.inputvariable = HTMLBUILDNOTES
+        as.searchstring = <br\><br\>
+        as.replacementstring = <br\>
+        as.casesensitive = False
+        as.replaceall = True
+      end
+      action.smtp.send
+      begin
+        attachmentsobject = "%FBPROJECTDIR%\\BuildLog.html" +
+                            ""
+        authenticate = true
+        bccsource = asSpecify
+        bodyobject = "<head\>" +
+                     "<title\>Quantify Excel Importer</title\>" +
+                     "<style\>" +
+                     "body {" +
+                     "        background-color: #FFF;" +
+                     "        font-family: Verdana, Arial, Helvetica, sans-serif;" +
+                     "        font-size: 12px;" +
+                     "        margin: 0;" +
+                     "        padding: 0px;" +
+                     "        }" +
+                     "h1,h2,h3 {" +
+                     "        color: #293955;" +
+                     "        font-size: 12px;" +
+                     "        border-bottom: solid 1px #bcc7d8;" +
+                     "        line-height: 1.4em;" +
+                     "        padding-left: .6em;" +
+                     "        }" +
+                     "</style\>" +
+                     "</head\>" +
+                     "<body\>" +
+                     "<h3\>Downloads</h3\>" +
+                     "<a href\=https://support.avontus.com/excelimporter/%AssemblyVersion.MajorVersion%.%AssemblyVersion.MinorVersion%.%AssemblyVersion.BuildVersion%/QuantifyExcelImporter.exe\>QuantifyExcelImporter.exe</a\> (%X86FRIENDLYFILESIZE%)" +
+                     "%HTMLBUILDNOTES%" +
+                     "</body\>" +
+                     ""
+        copytosource = asSpecify
+        description = "Send Release Email"
+        encoding = UTF-8
+        encryptedpassword = <REDACTED>
+        host = smtp.office365.com
+        htmlmessage = true
+        id = {6ECB49E1-E495-4BDD-A604-7926014779C2}
+        ignoremissingattachments = true
+        logsslnegotiation = false
+        pathofrecipientfile = C:\\Avontus\\Avontus.Quantify.ExcelImporter\\installer\\build-release-email-list.txt
+        plainbodyobject = "%BUILDNOTES%" +
+                          "" +
+                          "https://support.avontus.com/excelimporter/%AssemblyVersion.MajorVersion%.%AssemblyVersion.MinorVersion%.%AssemblyVersion.BuildVersion%/QuantifyExcelImporter.exe (%X86FRIENDLYFILESIZE%)" +
+                          ""
+        port = 587
+        recipientssource = asFromFile
+        replytosource = asSpecify
+        subject = "Quantify Excel Importer %AssemblyVersion% Released to Testing"
+        useehlo = true
+        useglobaloptions = true
+        userid = notifications@avontus.com
+        usessl = true
+        usetls = utUseExplicitTLS
+        email.address
+        begin
+          address = notifications@avontus.com
+          addresstype = from
+          name = "Avontus Support"
+        end
+        email.address
+        begin
+          addresstype = sender
+        end
+        email.list
+        begin
+          listtype = replyto
+        end
+        email.address
+        begin
+          addresstype = ReceiptRecipient
+        end
+        email.list
+        begin
+          listtype = recipients
+          email.address
+          begin
+            address = build-notifications@example.com
+            name = "Brian Webb"
+          end
+          email.address
+          begin
+            address = build-notifications@example.com
+            name = "Tom Nichols"
+          end
+          email.address
+          begin
+            address = build-notifications@example.com
+            name = " Janine Lowery"
+          end
+        end
+        email.list
+        begin
+          listtype = copyto
+        end
+        email.list
+        begin
+          listtype = blindcopyto
+        end
+      end
+      action.tfs.source.label.apply
+      begin
+        actiontypeid = {D0FFB85C-6DC1-4D40-B983-D312CDA305CF}
+        customactionname = "Team Foundation Apply Label"
+        description = "Apply Label to TFS"
+        enabletimeout = false
+        id = {BF9E5AB6-1A83-4EF2-9CE3-7815C8600FCE}
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        terminateontimeout = true
+        timeoutlength = 2
+        as.versionlatest = True
+        as.versionchangeset = False
+        as.versiondate = False
+        as.versionlabel = False
+        as.versionworkspace = False
+        as.changeset = 0
+        as.date = 12/30/1899
+        as.customworkspacepath = %FBPROJECTDIR%
+        as.usecustomworkspacepath = True
+        as.pathnames = $/Avontus.Quantify.ExcelImporter/
+        as.recursepathnames = True
+        as.childreplace = True
+        as.childmerge = False
+        as.labelname = %AssemblyVersion%
+        as.labelscope = $/
+        as.usecredentials = False
+        as.time = 12/30/1899
+        as.versiondatetime = False
+      end
+      action.propertyset.incvalue
+      begin
+        description = "Increment Build Version in AssemblyInfo"
+        id = {78862CFA-04F2-4C93-80C1-6258FD7E1EEE}
+        incrementby = 1
+        propertysetname = AssemblyVersion
+        theproperty = BuildVersion
+      end
+      action.assemblyinfo.update
+      begin
+        backupfiles = true
+        description = "Update AssemblyInfo with new version"
+        id = {36AE4ABD-5373-4769-93C2-EA97BB1CBD38}
+        propertysetforversion = AssemblyVersion
+        recurse = false
+        selection = "%FBPROJECTDIR%\\SharedAssemblyInfo.cs" +
+                    ""
+        updateassemblyfileversion = true
+        updateassemblyversion = true
+        updateonly = true
+      end
+      action.tfs.source.pending.checkin
+      begin
+        actiontypeid = {B236C13B-FC81-4075-B2D1-43FAAD802491}
+        customactionname = "Team Foundation Check In Pending Changes"
+        description = "Check in All Changes"
+        enabletimeout = false
+        id = {B89D4748-3C20-46E5-8A0E-58A4EBA99B72}
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        terminateontimeout = true
+        timeoutlength = 2
+        as.pathnames = %FBPROJECTDIR%\\*.*
+        as.usepathnames = True
+        as.recursepathnames = True
+        as.customworkspacepath = %FBPROJECTDIR%
+        as.usecustomworkspacepath = False
+        as.comment = "Increment version to %AssemblyVersion%"
+        as.override = False
+        as.usecredentials = False
+        as.failifnofilestocheckin = False
+        as.bypass = False
+      end
+    end
+  end
+  target
+  begin
+    name = OnFailure
+    targetid = {521E8B8E-E68D-48C3-89D5-7DAB90C1575E}
+    rootaction
+    begin
+      action.tfs.source.pending.undo
+      begin
+        actiontypeid = {59DCFCAB-AFA1-4F26-991B-C6A40C9A12B7}
+        customactionname = "Team Foundation Undo Pending Changes"
+        description = "Undo Pending Changes"
+        enabletimeout = false
+        id = {95309B1E-338B-4C2A-9D73-A085D22E5AD7}
+        ignorefailure = true
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        terminateontimeout = true
+        timeoutlength = 2
+        as.recursepathnames = 0
+        as.usepathnames = 0
+        as.customworkspacepath = %FBPROJECTDIR%
+        as.usecustomworkspacepath = 1
+        as.usecredentials = False
+      end
+      action.log.export
+      begin
+        actionlistid = {BFEA6980-87E2-4E07-9F1B-3A5567C12C0F}
+        description = "Export log as HTML"
+        erroractionsonly = false
+        exportformat = efHTML
+        exportfragment = expFull
+        exportfromparenttarget = false
+        exportfromroot = false
+        id = {B9BDB14C-6213-4B22-ADA4-86C9EBBCB309}
+        ignorefailure = true
+        includeactionendtime = true
+        includeactionruntime = true
+        includeactionstarttime = true
+        includeactiontype = true
+        includeheading = true
+        includeoutput = true
+        includesummary = true
+        noheaderforfragment = false
+        outputfile = %FBPROJECTDIR%\\BuildLog.html
+        recursiveactions = true
+      end
+      action.smtp.send
+      begin
+        attachmentsobject = "%FBPROJECTDIR%\\BuildLog.html" +
+                            "%FBPROJECTDIR%\\Installer\\ontimeresult.html" +
+                            ""
+        authenticate = true
+        bccsource = asSpecify
+        bodyobject = "<head\>" +
+                     "<title\>Excel Importer</title\>" +
+                     "<style\>" +
+                     "body {" +
+                     "        background-color: #FFF;" +
+                     "        font-family: Verdana, Arial, Helvetica, sans-serif;" +
+                     "        font-size: 12px;" +
+                     "        margin: 0;" +
+                     "        padding: 0px;" +
+                     "        }" +
+                     "h1,h2,h3 {" +
+                     "        color: #293955;" +
+                     "        font-size: 12px;" +
+                     "        border-bottom: solid 1px #bcc7d8;" +
+                     "        line-height: 1.4em;" +
+                     "        padding-left: .6em;" +
+                     "        }" +
+                     "</style\>" +
+                     "</head\>" +
+                     "<body\>" +
+                     "<font color\=red\>Build Failure for Excel Importer %AssemblyVersion%</font\><br\>See attached log file for details." +
+                     "</body\>" +
+                     ""
+        copytosource = asSpecify
+        description = "Send Build Failure Email"
+        encoding = UTF-8
+        encryptedpassword = <REDACTED>
+        host = smtp.office365.com
+        htmlmessage = true
+        id = {F2EA72C4-CDEC-44FF-985F-3D6315DE5AB2}
+        ignoremissingattachments = true
+        logsslnegotiation = false
+        pathofrecipientfile = C:\\Avontus\\Avontus.Quantify.ExcelImporter\\installer\\build-failure-email-list.txt
+        plainbodyobject = "Build Failure for Excel Importer %AssemblyVersion%" +
+                          "See attached log file for details." +
+                          ""
+        port = 587
+        recipientssource = asFromFile
+        replytosource = asSpecify
+        subject = "Excel Importer %AssemblyVersion% Failed to Build"
+        useehlo = true
+        useglobaloptions = true
+        userid = notifications@avontus.com
+        usessl = true
+        usetls = utUseExplicitTLS
+        email.address
+        begin
+          address = notifications@avontus.com
+          addresstype = from
+          name = "Avontus Support"
+        end
+        email.address
+        begin
+          addresstype = sender
+        end
+        email.list
+        begin
+          listtype = replyto
+        end
+        email.address
+        begin
+          addresstype = ReceiptRecipient
+        end
+        email.list
+        begin
+          listtype = recipients
+          email.address
+          begin
+            address = build-notifications@example.com
+            name = "Brian Webb"
+          end
+          email.address
+          begin
+            address = build-notifications@example.com
+            name = "Tom Nichols"
+          end
+          email.address
+          begin
+            address = build-notifications@example.com
+            name = " Janine Lowery"
+          end
+        end
+        email.list
+        begin
+          listtype = copyto
+        end
+        email.list
+        begin
+          listtype = blindcopyto
+        end
+      end
+    end
+  end
+  variable
+  begin
+    name = AIDATE
+    variablescope = vtProject
+  end
+  variable
+  begin
+    name = BUILDNOTES
+    variablescope = vtProject
+  end
+  variable
+  begin
+    name = HTMLBUGNOTES
+    variablescope = vtProject
+    variabletype = btString
+  end
+  variable
+  begin
+    name = HTMLBUILDNOTES
+    variablescope = vtProject
+    variabletype = btString
+  end
+  variable
+  begin
+    name = TANKWIZARDFILESIZE
+    variablescope = vtProject
+    variabletype = btString
+  end
+  variable
+  begin
+    name = TANKWIZARDFRIENDLYFILESIZE
+    variablescope = vtProject
+  end
+  variable
+  begin
+    name = X64FILESIZE
+    variablescope = vtProject
+    variabletype = btString
+  end
+  variable
+  begin
+    name = X64FRIENDLYFILESIZE
+    variablescope = vtProject
+    variabletype = btString
+  end
+  variable
+  begin
+    name = X86FILESIZE
+    variablescope = vtProject
+    variabletype = btString
+  end
+  variable
+  begin
+    name = X86FRIENDLYFILESIZE
+    variablescope = vtProject
+    variabletype = btString
+  end
+end

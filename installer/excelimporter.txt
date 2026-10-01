@@ -1,0 +1,14 @@
+;aiu;
+
+[ExcelImporter1.0.8]
+Name=Quantify Excel Importer
+URL=https://download.avontus.com/excelimporter/QuantifyExcelImporter.exe
+Size=2865616
+Description=Avontus Quantify Excel Importer
+FilePath=[APPDIR]Avontus.Quantify.ExcelImporter.dll
+Version=1.0.8.0
+ReleaseDate=02/7/2015
+Enhancement=Can now recognize an Italian spreadsheet from ponCAD
+BugFix=Fix issue where valid spreadsheet was prompting errors when opening directly in Quantify
+BugFix1=Redirect Avontus Assist help button to Excel Importer page on web.
+Replaces=All
